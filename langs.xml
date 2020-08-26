@@ -73,7 +73,7 @@ Kaijie - Graphics </authors>
      <line num='3' by='maaxxaam' side='0'>I don't know yet how we should trigger them but the basis must be working if you see this!</line>
      <line num='4' by='masterpiece' side='1'>Oh, I'm in dialogue!</line>
      <line num='5' by='masterpiece' side='1'>By the way, we are working a lot in the moment!</line>
-     <line num='6' by='masterpiece' side='1'>There are many changes to the combat since you last saw it. See it yourself?</line>
+     <line num='6' by='masterpiece' side='1'>There are many changes since you last saw the game. See them yourself?</line>
      <line num='7' by='masterpiece' side='1'>*MasterPIEce happily leaves the scene*</line>
      <line num='8' by='maaxxaam' side='0'>Why we are still here?</line>
     </dialogue>
@@ -150,5 +150,21 @@ Kaijie - Графика </authors>
     <enter>Заходим в </enter>
     <leave>Покидаем </leave>
    </splash>
+   <scene>
+    <dialogue id='1' lines='8'> 
+     <line num='1' by='maaxxaam' side='0'>Всем привет!</line>
+     <line num='2' by='maaxxaam' side='0'>Это тестовый диалог. Надеюсь, с ним все будет хорошо.</line>
+     <line num='3' by='maaxxaam' side='0'>Еще не знаю, где мы будем диалоги показывать, но база уже готова, раз вы это видите!</line>
+     <line num='4' by='masterpiece' side='1'>О, я в диалоге!</line>
+     <line num='5' by='masterpiece' side='1'>Мы тут, кстати, много над чем работаем!</line>
+     <line num='6' by='masterpiece' side='1'>Изменяем все так сильно, как можем. Посмотришь сам?</line>
+     <line num='7' by='masterpiece' side='1'>*Веселый MasterPIEce покидает сцену*</line>
+     <line num='8' by='maaxxaam' side='0'>Почему мы еще здесь?</line>
+    </dialogue>
+   </scene>
+   <actors>
+    <maaxxaam>Чернов М. (Maaxxaam)</maaxxaam>
+    <masterpiece>Имя скрыто (masterPIEce)</masterpiece>
+   </actors>
   </ru>
 </lang>
