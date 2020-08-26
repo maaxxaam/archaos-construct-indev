@@ -1,0 +1,154 @@
+<lang>
+  <en>
+    <scroll>
+      <note1>
+This land was fertile once. The grass was green. Now, only grey. Our crops turn to dust. Our cattle are sick. It cannot be long before this plague turns to us. But even in our darkest hour, we must hold on to our faith.  We must suffer and be glad.
+      </note1>
+      <note2>
+The cattle are gone. The children are sick. Still the Gods do nothing. All my waking hours I pray. May the Gods have mercy. May they show kindness on our children. May they slow this lurking fever. Lest it take hold. 
+      </note2>
+      <note3>
+Death ears receive our prayers. We can await their mercy no longer. Salvation must be seized. Isolate the sick. And burn the dead. These are the only tenets that will serve us in this purpose. And when we drive this plague back into the underworld, let the Gods take no glory from our plight.
+      </note3>
+      <note4>
+Why only now, that my prayers have ceased, must I hear whispers of the divine? Sent not from above. But from below this very rock. If the Gods have shunned us, then let it be. We will take our love elsewhere. 
+      </note4>
+      <note5>
+The grass is green again. Our children are healthy. As The Buried One promised, so it has come to be. I look to our petty shrines, and our humble offerings, and I wonder. Might we ever repay all he has given to us? 
+      </note5>
+      <note6>
+He has given us our task. Deep below he waits… Longing for freedom. Longing for the sun’s light. Longing for a chance to show the world his mercy. He has already given us all. Gladly, we do this for him. 
+      </note6>
+      <note7>
+Our task consumes us. I dig, for that is what he demands. No time for prayer. No time for sleep. Now is the time to dig. He awaits us patiently. We break apart the earth, and set him free. 
+      </note7>
+      <note8>
+He is close now. I feel him, always. The strength of his love. Empowering. Overbearing. How I despise this sense of dread that fills the pit in my stomach. But it is with me no matter my objections. As we reach the end of our journey… As we come so close to salvation… Such fury compels me to stall. And as always, I persist and I proceed. All will be clear soon.
+      </note8>
+      <note9>
+Our tunnels finally breached the cavern. And at once I realised our dreadful mistake. There was no love for us here. There was nothing down here but darkness... and hunger... the belly of the beast opened itself up to us, and we stepped forwardly gladly. Alone in the dark. Consumed, mind and soul.
+      </note9>
+    </scroll>
+    <button>
+      <play>Play
+      </play>
+      <settings>Settings
+      </settings>
+      <reset>Reset progress
+      </reset>
+      <sound>Sound level: </sound>
+      <music>Music level: </music>
+      <settingshint>Pull to change
+      </settingshint>
+      <tomenu>Main menu
+      </tomenu>
+      <restart>Restart
+      </restart>
+      <gameover>You died
+      </gameover>
+      <pause>Pause
+      </pause>
+    </button>
+    <authors>
+      Authors:
+Maaxxaam - Programming
+masterPIEce, Solus - Level Design
+Mr_Anvil - Story
+Massimiliano.vi - Music and Sound Design
+Kaijie - Graphics </authors>
+   <temple>
+    <Lvl1>Water Temple</Lvl1>
+    <Lvl2>Fire Temple</Lvl2>
+    <Lvl3>Air Temple</Lvl3>
+    <Lvl4>Earth Temple</Lvl4>
+   </temple>
+   <splash>
+    <enter>Entering </enter>
+    <leave>Leaving </leave>
+   </splash>
+   <scene>
+    <dialogue id='1' lines='8'> 
+     <line num='1' by='maaxxaam' side='0'>Hello there!</line>
+     <line num='2' by='maaxxaam' side='0'>This is a test dialogue. Let's hope it ends well.</line>
+     <line num='3' by='maaxxaam' side='0'>I don't know yet how we should trigger them but the basis must be working if you see this!</line>
+     <line num='4' by='masterpiece' side='1'>Oh, I'm in dialogue!</line>
+     <line num='5' by='masterpiece' side='1'>By the way, we are working a lot in the moment!</line>
+     <line num='6' by='masterpiece' side='1'>There are many changes to the combat since you last saw it. See it yourself?</line>
+     <line num='7' by='masterpiece' side='1'>*MasterPIEce happily leaves the scene*</line>
+     <line num='8' by='maaxxaam' side='0'>Why we are still here?</line>
+    </dialogue>
+   </scene>
+   <actors>
+    <maaxxaam>Max Black (Maaxxaam)</maaxxaam>
+    <masterpiece>Name hidden (masterPIEce)</masterpiece>
+   </actors>
+  </en>
+  <ru>
+    <scroll>
+      <note1>
+Когда-то эта земля была плодородной, а трава - зеленой. Теперь же все серо. Наши семена обращаются в пыль. Наш скот болен. Скоро эта болезнь дойдет и до нас, но даже в худшие времена мы должны держаться за нашу веру. Мы примем это страдание так, как того заслуживаем.
+      </note1>
+      <note2>
+Наш скот мертв, дети больны, а Боги так ничего и не сделали. Каждую свободную ото сна минуту я молюсь. Прошу у Богов пощады. Прошу их пощадить наших детей. Прошу закончить эту мучительную лихорадку. И прошу того, чтобы она не повторялась вновь.
+      </note2>
+      <note3>
+Только смерть слышит наши молитвы. Мы больше не можем ожидать чуда - спасаться нужно самим. Изолировать больных. Сжечь трупы. Только так можно достичь цели. И когда эта болезнь вернется в преисподнюю, Богов не будут славить за это.
+      </note3>
+      <note4>
+Почему лишь сейчас, когда я перестал молиться, стал вдруг слышен божественный зов? Однако идет он не с небес, а из глубин этой горы. Если Боги от нас отвернулись, то так тому и быть. Мы отдадим нашу любовь кому-нибудь другому.
+      </note4>
+      <note5>
+Трава вновь позеленела. Наши дети снова здоровы. Как пообещал Погребенный, так оно и произошло. Смотря на наши храмы и щедрые дары, я часто погружаюсь в раздумья. Сможем ли мы когда-нибудь расплатиться?
+      </note5>
+      <note6>
+Он дал нам цель. Там, в глубине, он ждет… Жаждет свободы. Жаждет солнечного света. Жаждет шанса показать миру свою доброту. Он дал нам все и мы сделаем это ради него.
+      </note6>
+      <note7>
+Мы поглощены целью. Я копаю, ведь ему это нужно. Нет времени ни на молитвы, ни на сон. Есть только лопата в руке. Он терпеливо ждет. Мы освободим его от оков земли.
+      </note7>
+      <note8>
+Он уже близко. Я чувствую его, постоянно чувствую. Силу его любви. Властную. Вдохновляющую. Я презираю чувство страха, что гложет меня. Оно остается со мной несмотря ни на что. Когда мы дойдем до конца… И придем к нашему Спасителю… Я замираю от бури чувств. И, как всегда, успокаиваюсь и продолжаю. Скоро все закончится.
+      </note8>
+      <note9>
+Наши туннели пробурились до пещеры. Только теперь я осознал нашу ужасную ошибку. Здесь нет для нас любви. Здесь нет ничего, кроме тьмы… и голода… Пасть зверя раскрылась, и мы послушно в нее вошли. Одни в темноте. Душа и тело покидают нас...
+      </note9>
+    </scroll>	
+    <button>
+      <play>Играть
+      </play>
+      <settings>Настройки
+      </settings>
+      <reset>Сброс прогресса
+      </reset>
+      <sound>Уровень звуков: </sound>
+      <music>Уровень музыки: </music>
+      <settingshint>Потяните для настройки
+      </settingshint>
+      <tomenu>В меню
+      </tomenu>
+      <restart>Заново
+      </restart>
+      <gameover>Вы мертвы
+      </gameover>
+      <pause>Пауза
+      </pause>
+    </button>
+    <authors>
+      Авторы:
+Maaxxaam - Программирование
+masterPIEce, Solus - Дизайн уровней
+Mr_Anvil - Сюжет
+Massimiliano.vi - Дизайн музыки и звуков
+Kaijie - Графика </authors>
+   <temple>
+    <Lvl1>Храм Воды</Lvl1>
+    <Lvl2>Храм Огня</Lvl2>
+    <Lvl3>Храм Воздуха</Lvl3>
+    <Lvl4>Храм Земли</Lvl4>
+   </temple>
+   <splash>
+    <enter>Заходим в </enter>
+    <leave>Покидаем </leave>
+   </splash>
+  </ru>
+</lang>
