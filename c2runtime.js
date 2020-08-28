@@ -29219,6 +29219,51 @@ cr.behaviors.LOS = function(runtime)
 }());
 ;
 ;
+cr.behaviors.NoSave = function(runtime)
+{
+	this.runtime = runtime;
+};
+(function ()
+{
+	var behaviorProto = cr.behaviors.NoSave.prototype;
+	behaviorProto.Type = function(behavior, objtype)
+	{
+		this.behavior = behavior;
+		this.objtype = objtype;
+		this.runtime = behavior.runtime;
+	};
+	var behtypeProto = behaviorProto.Type.prototype;
+	behtypeProto.onCreate = function()
+	{
+	};
+	behaviorProto.Instance = function(type, inst)
+	{
+		this.type = type;
+		this.behavior = type.behavior;
+		this.inst = inst;				// associated object instance to modify
+		this.runtime = type.runtime;
+	};
+	var behinstProto = behaviorProto.Instance.prototype;
+	behinstProto.onCreate = function()
+	{
+		this.myProperty = this.properties[0];
+	};
+	behinstProto.onDestroy = function ()
+	{
+	};
+	behinstProto.tick = function ()
+	{
+		var dt = this.runtime.getDt(this.inst);
+	};
+	function Cnds() {};
+	behaviorProto.cnds = new Cnds();
+	function Acts() {};
+	behaviorProto.acts = new Acts();
+	function Exps() {};
+	behaviorProto.exps = new Exps();
+}());
+;
+;
 cr.behaviors.Pathfinding = function(runtime)
 {
 	this.runtime = runtime;
@@ -32303,6 +32348,86 @@ cr.behaviors.Pin = function(runtime)
 }());
 ;
 ;
+cr.behaviors.Rotate = function(runtime)
+{
+	this.runtime = runtime;
+};
+(function ()
+{
+	var behaviorProto = cr.behaviors.Rotate.prototype;
+	behaviorProto.Type = function(behavior, objtype)
+	{
+		this.behavior = behavior;
+		this.objtype = objtype;
+		this.runtime = behavior.runtime;
+	};
+	var behtypeProto = behaviorProto.Type.prototype;
+	behtypeProto.onCreate = function()
+	{
+	};
+	behaviorProto.Instance = function(type, inst)
+	{
+		this.type = type;
+		this.behavior = type.behavior;
+		this.inst = inst;				// associated object instance to modify
+		this.runtime = type.runtime;
+	};
+	var behinstProto = behaviorProto.Instance.prototype;
+	behinstProto.onCreate = function()
+	{
+		this.speed = cr.to_radians(this.properties[0]);
+		this.acc = cr.to_radians(this.properties[1]);
+	};
+	behinstProto.saveToJSON = function ()
+	{
+		return {
+			"speed": this.speed,
+			"acc": this.acc
+		};
+	};
+	behinstProto.loadFromJSON = function (o)
+	{
+		this.speed = o["speed"];
+		this.acc = o["acc"];
+	};
+	behinstProto.tick = function ()
+	{
+		var dt = this.runtime.getDt(this.inst);
+		if (dt === 0)
+			return;
+		if (this.acc !== 0)
+			this.speed += this.acc * dt;
+		if (this.speed !== 0)
+		{
+			this.inst.angle = cr.clamp_angle(this.inst.angle + this.speed * dt);
+			this.inst.set_bbox_changed();
+		}
+	};
+	function Cnds() {};
+	behaviorProto.cnds = new Cnds();
+	function Acts() {};
+	Acts.prototype.SetSpeed = function (s)
+	{
+		this.speed = cr.to_radians(s);
+	};
+	Acts.prototype.SetAcceleration = function (a)
+	{
+		this.acc = cr.to_radians(a);
+	};
+	behaviorProto.acts = new Acts();
+	function Exps() {};
+	Exps.prototype.Speed = function (ret)
+	{
+		ret.set_float(cr.to_degrees(this.speed));
+	};
+	Exps.prototype.Acceleration = function (ret)
+	{
+		ret.set_float(cr.to_degrees(this.acc));
+	};
+	behaviorProto.exps = new Exps();
+}());
+;
+;
 cr.behaviors.Sin = function(runtime)
 {
 	this.runtime = runtime;
@@ -33478,16 +33603,17 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Button,
 	cr.plugins_.Browser,
 	cr.plugins_.Function,
-	cr.plugins_.LocalStorage,
 	cr.plugins_.Particles,
 	cr.plugins_.Keyboard,
-	cr.plugins_.Sprite,
-	cr.plugins_.TiledBg,
-	cr.plugins_.XML,
-	cr.plugins_.Spritefont2,
-	cr.plugins_.TextBox,
-	cr.plugins_.Tilemap,
+	cr.plugins_.LocalStorage,
 	cr.plugins_.Touch,
+	cr.plugins_.TextBox,
+	cr.plugins_.XML,
+	cr.plugins_.Sprite,
+	cr.plugins_.Spritefont2,
+	cr.plugins_.TiledBg,
+	cr.plugins_.Tilemap,
+	cr.behaviors.NoSave,
 	cr.behaviors.solid,
 	cr.behaviors.Physics,
 	cr.behaviors.Pathfinding,
@@ -33504,6 +33630,7 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.DragnDrop,
 	cr.behaviors.Pin,
 	cr.behaviors.Fade,
+	cr.behaviors.Rotate,
 	cr.system_object.prototype.cnds.IsGroupActive,
 	cr.plugins_.Sprite.prototype.cnds.OnCollision,
 	cr.behaviors.Physics.prototype.cnds.CompareVelocity,
@@ -33533,32 +33660,21 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.Bullet.prototype.cnds.CompareTravelled,
 	cr.plugins_.Sprite.prototype.cnds.OnAnimFinished,
 	cr.plugins_.Function.prototype.cnds.OnFunction,
-	cr.plugins_.Function.prototype.acts.SetReturnValue,
-	cr.plugins_.Sprite.prototype.exps.Angle,
-	cr.plugins_.Arr.prototype.exps.IndexOf,
 	cr.system_object.prototype.cnds.Compare,
 	cr.plugins_.Sprite.prototype.exps.Count,
 	cr.plugins_.Arr.prototype.cnds.CompareX,
-	cr.system_object.prototype.acts.CreateObject,
-	cr.plugins_.Sprite.prototype.exps.ImagePointX,
-	cr.plugins_.Sprite.prototype.exps.ImagePointY,
-	cr.plugins_.Sprite.prototype.acts.SetTowardPosition,
-	cr.plugins_.Sprite.prototype.exps.X,
-	cr.plugins_.Sprite.prototype.exps.Y,
-	cr.plugins_.Sprite.prototype.acts.RotateClockwise,
+	cr.plugins_.Sprite.prototype.acts.Spawn,
 	cr.plugins_.Particles.prototype.acts.SetPosToObject,
 	cr.plugins_.Particles.prototype.acts.SetAngle,
+	cr.plugins_.Sprite.prototype.exps.Angle,
 	cr.behaviors.Pin.prototype.acts.Pin,
-	cr.plugins_.Sprite.prototype.acts.SetAngle,
-	cr.plugins_.Sprite.prototype.acts.Spawn,
 	cr.plugins_.Particles.prototype.acts.ZMoveToObject,
 	cr.behaviors.Physics.prototype.acts.ApplyImpulseAtAngle,
 	cr.behaviors.Physics.prototype.exps.Mass,
-	cr.system_object.prototype.cnds.IsBetweenAngles,
 	cr.behaviors.EightDir.prototype.acts.SetVectorX,
-	cr.system_object.prototype.exps.sin,
-	cr.behaviors.EightDir.prototype.acts.SetVectorY,
 	cr.system_object.prototype.exps.cos,
+	cr.behaviors.EightDir.prototype.acts.SetVectorY,
+	cr.system_object.prototype.exps.sin,
 	cr.system_object.prototype.cnds.LayerVisible,
 	cr.plugins_.TiledBg.prototype.cnds.CompareInstanceVar,
 	cr.behaviors.EightDir.prototype.acts.SimulateControl,
@@ -33567,9 +33683,16 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Keyboard.prototype.cnds.IsKeyDown,
 	cr.plugins_.Keyboard.prototype.cnds.OnKeyReleased,
 	cr.plugins_.Arr.prototype.exps.At,
-	cr.plugins_.Touch.prototype.cnds.OnTapGestureObject,
-	cr.plugins_.Sprite.prototype.exps.LayerName,
+	cr.plugins_.Keyboard.prototype.cnds.OnKey,
+	cr.system_object.prototype.acts.CreateObject,
+	cr.plugins_.Sprite.prototype.exps.X,
+	cr.plugins_.Sprite.prototype.exps.Y,
+	cr.plugins_.Sprite.prototype.acts.SetAngle,
+	cr.system_object.prototype.exps.random,
+	cr.system_object.prototype.exps.choose,
 	cr.plugins_.Sprite.prototype.exps.IID,
+	cr.plugins_.Touch.prototype.cnds.IsTouchingObject,
+	cr.system_object.prototype.acts.SetVar,
 	cr.behaviors.Turret.prototype.cnds.OnShoot,
 	cr.plugins_.Sprite.prototype.cnds.IsBoolInstanceVarSet,
 	cr.behaviors.LOS.prototype.cnds.HasLOSToObject,
@@ -33585,8 +33708,9 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Tilemap.prototype.exps.TileToPositionX,
 	cr.plugins_.Tilemap.prototype.exps.TileToPositionY,
 	cr.system_object.prototype.exps.time,
+	cr.plugins_.Sprite.prototype.exps.ImagePointX,
+	cr.plugins_.Sprite.prototype.exps.ImagePointY,
 	cr.plugins_.Audio.prototype.acts.Stop,
-	cr.system_object.prototype.acts.SetVar,
 	cr.system_object.prototype.exps.angle,
 	cr.plugins_.Sprite.prototype.cnds.PickByUID,
 	cr.plugins_.Function.prototype.exps.Param,
@@ -33619,12 +33743,12 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.exps.floor,
 	cr.plugins_.Tilemap.prototype.exps.Width,
 	cr.plugins_.Tilemap.prototype.exps.Height,
+	cr.plugins_.Arr.prototype.exps.IndexOf,
 	cr.plugins_.Tilemap.prototype.exps.TileAt,
-	cr.system_object.prototype.exps.choose,
 	cr.system_object.prototype.cnds.CompareVar,
 	cr.plugins_.Tilemap.prototype.acts.SetTileState,
 	cr.system_object.prototype.cnds.OnLayoutStart,
-	cr.system_object.prototype.exps.random,
+	cr.system_object.prototype.acts.SaveState,
 	cr.plugins_.Arr.prototype.acts.SetX,
 	cr.plugins_.Browser.prototype.acts.ExecJs,
 	cr.system_object.prototype.acts.SetLayerVisible,
@@ -33632,11 +33756,12 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.Turret.prototype.acts.AddTarget,
 	cr.behaviors.Pathfinding.prototype.acts.AddObstacle,
 	cr.plugins_.TiledBg.prototype.acts.SetWidth,
+	cr.system_object.prototype.acts.SetGroupActive,
 	cr.plugins_.Sprite.prototype.acts.ToggleBoolInstanceVar,
 	cr.plugins_.Tilemap.prototype.acts.SetTile,
 	cr.system_object.prototype.cnds.PickByComparison,
+	cr.plugins_.Touch.prototype.cnds.OnTapGestureObject,
 	cr.system_object.prototype.acts.AddVar,
-	cr.plugins_.Keyboard.prototype.cnds.OnKey,
 	cr.plugins_.Touch.prototype.cnds.OnTouchObject,
 	cr.system_object.prototype.acts.SetTimescale,
 	cr.plugins_.LocalStorage.prototype.acts.SetItem,
@@ -33645,7 +33770,7 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Spritefont2.prototype.exps.LayerName,
 	cr.plugins_.Spritefont2.prototype.acts.Destroy,
 	cr.system_object.prototype.acts.GoToLayout,
-	cr.system_object.prototype.acts.RestartLayout,
+	cr.system_object.prototype.acts.LoadState,
 	cr.plugins_.Spritefont2.prototype.exps.Count,
 	cr.plugins_.TiledBg.prototype.exps.Count,
 	cr.system_object.prototype.cnds.TriggerOnce,
@@ -33668,6 +33793,10 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Audio.prototype.acts.Play,
 	cr.plugins_.Sprite.prototype.acts.SetX,
 	cr.plugins_.Particles.prototype.acts.SetRate,
+	cr.system_object.prototype.cnds.OnSaveComplete,
+	cr.plugins_.Browser.prototype.acts.Alert,
+	cr.system_object.prototype.cnds.OnLoadComplete,
+	cr.behaviors.Pathfinding.prototype.acts.Stop,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemExists,
 	cr.plugins_.LocalStorage.prototype.acts.GetItem,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemMissing,
@@ -33677,14 +33806,12 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Spritefont2.prototype.exps.Text,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemSet,
 	cr.plugins_.Sprite.prototype.exps.AnimationName,
-	cr.plugins_.Browser.prototype.acts.Alert,
 	cr.behaviors.DragnDrop.prototype.cnds.IsDragging,
 	cr.behaviors.DragnDrop.prototype.acts.Drop,
 	cr.system_object.prototype.exps.round,
 	cr.behaviors.DragnDrop.prototype.acts.SetEnabled,
 	cr.plugins_.TextBox.prototype.acts.Destroy,
 	cr.plugins_.Button.prototype.acts.Destroy,
-	cr.system_object.prototype.acts.SetGroupActive,
 	cr.plugins_.LocalStorage.prototype.acts.CheckItemExists,
 	cr.plugins_.Spritefont2.prototype.cnds.PickByUID,
 	cr.plugins_.Button.prototype.exps.Count,
@@ -33699,6 +33826,7 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Audio.prototype.acts.SetVolume,
 	cr.system_object.prototype.cnds.OnLayoutEnd,
 	cr.plugins_.Audio.prototype.acts.StopAll,
+	cr.plugins_.Function.prototype.acts.SetReturnValue,
 	cr.plugins_.Spritefont2.prototype.cnds.OnCreated,
 	cr.plugins_.Spritefont2.prototype.acts.SetCharacterWidth,
 	cr.plugins_.Arr.prototype.exps.Height,

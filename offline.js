@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1598449798,
+	"version": 1598626501,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -24,6 +24,8 @@
 		"images/box-sheet0.png",
 		"images/box-sheet1.png",
 		"images/box-sheet2.png",
+		"images/torch-sheet0.png",
+		"images/torch-sheet1.png",
 		"images/back_button-sheet0.png",
 		"images/slide_dot-sheet0.png",
 		"images/play_but-sheet0.png",
@@ -62,8 +64,6 @@
 		"images/scroll_watch-sheet0.png",
 		"images/pause_but-sheet0.png",
 		"images/pause_but-sheet1.png",
-		"images/torch-sheet0.png",
-		"images/torch-sheet1.png",
 		"images/main_text_font.png",
 		"images/scroll_text_font.png",
 		"images/dial_avatar-sheet0.png",
@@ -71,6 +71,7 @@
 		"images/dial_back.png",
 		"images/dial_next-sheet0.png",
 		"images/dimmed_back.png",
+		"images/spinner-sheet0.png",
 		"media/air.m4a",
 		"media/air.ogg",
 		"media/earth.m4a",
