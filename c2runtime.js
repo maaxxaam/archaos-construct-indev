@@ -33774,7 +33774,7 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Sprite.prototype.acts.SubInstanceVar,
 	cr.behaviors.Flash.prototype.acts.Flash,
 	cr.plugins_.Sprite.prototype.cnds.OnAnyAnimFinished,
-	cr.behaviors.Sin.prototype.cnds.ComparePeriod,
+	cr.behaviors.Sin.prototype.exps.CyclePosition,
 	cr.behaviors.EightDir.prototype.acts.Stop,
 	cr.behaviors.EightDir.prototype.acts.SetIgnoreInput,
 	cr.plugins_.Sprite.prototype.acts.SetSize,
